@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "./List";
 import { Form } from "./Form";
-import { LANGUAGES } from "./const/languages";
+import { getLanguages } from "./const/languages";
 
 function App() {
 	const [tab, setTab] = useState("list");
-	const [langs, setLangs] = useState(LANGUAGES);
+	const [langs, setLangs] = useState([]);
+
+	// 第二引数に空の[]を入れるとmount時だけ,
+	useEffect(() => {
+		console.log("App.js:useEffect");
+		fetchLanguages();
+	}, []);
+
+	const fetchLanguages = async () => {
+		const languages = await getLanguages();
+		setLangs(languages);
+	};
 
 	const addLang = (lang) => {
 		setLangs([...langs, lang]);
