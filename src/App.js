@@ -3,6 +3,7 @@ import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from "./const/languages";
 import styled from "styled-components";
+import { withLoading } from "./hoc/withLoading";
 
 const Header = styled.header`
 	display: flex;
@@ -18,27 +19,18 @@ const HeaderUl = styled.ul`
 `;
 
 const HeaderLi = styled.li`
-list-style:none;
-padding: 4px 12px;
-cursor: pointer;
-border-bottom${(props) => (props.focused ? "2px solid #F44336" : "none")}
+	list-style: none;
+	padding: 4px 12px;
+	cursor: pointer;
+	border-bottom: ${(props) => (props.focused ? "2px solid #F44336" : "none")};
 `;
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { tab: "list", langs: [] };
+		this.state = { tab: "list", langs: props.data };
 	}
 
-	componentDidMount() {
-		console.log("App.js:componentDidMount");
-		this.fetchLanguages();
-	}
-
-	async fetchLanguages() {
-		const langs = await getLanguages();
-		this.setState({ langs });
-	}
 	addLang(lang) {
 		this.setState({
 			tab: "list",
@@ -75,4 +67,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default withLoading(App, getLanguages);
