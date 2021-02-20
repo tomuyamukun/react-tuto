@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { List } from "./List";
 import { Form } from "./Form";
+import { withLoading } from "./hoc/withLoading";
 import { getLanguages } from "./const/languages";
 
 const Header = styled.header`
@@ -23,20 +24,9 @@ const HeaderLi = styled.li`
 	border-bottom: ${(props) => (props.focused ? "2px solid #F44336" : "none")};
 `;
 
-function App() {
+function App({ data }) {
 	const [tab, setTab] = useState("list");
-	const [langs, setLangs] = useState([]);
-
-	// 第二引数に空の[]を入れるとmount時だけ,
-	useEffect(() => {
-		console.log("App.js:useEffect");
-		fetchLanguages();
-	}, []);
-
-	const fetchLanguages = async () => {
-		const languages = await getLanguages();
-		setLangs(languages);
-	};
+	const [langs, setLangs] = useState(data);
 
 	const addLang = (lang) => {
 		setLangs([...langs, lang]);
@@ -61,4 +51,4 @@ function App() {
 	);
 }
 
-export default App;
+export default withLoading(App, getLanguages);
