@@ -1,9 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import { List } from "./List";
+import { Modal } from "./components/modal";
 import { Form } from "./Form";
-import { withLoading } from "./hoc/withLoading";
+import { List } from "./List";
 import { getLanguages } from "./const/languages";
+import { withLoading } from "./hoc/withLoading";
 
 const Header = styled.header`
 	display: flex;
@@ -47,6 +48,7 @@ function App({ data }) {
 			</Header>
 			{/* tabがlistのときList表示それ以外はFormを表示,初期値はlistなのでList */}
 			{tab === "list" ? <List langs={langs} /> : <Form onAddLang={addLang} />}
+			<Modal />
 		</div>
 	);
 }
