@@ -47,6 +47,7 @@ export const Form = ({ onAddLang }) => {
 					<FormButton>追加</FormButton>
 				</ButtonContainer>
 			</form>
+			{/* showModalがtrueになったらFormModal表示 */}
 			{showModal && (
 				<FormModal
 					confirm={() => onAddLang(text)}

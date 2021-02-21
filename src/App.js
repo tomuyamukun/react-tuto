@@ -48,7 +48,6 @@ function App({ data }) {
 			</Header>
 			{/* tabがlistのときList表示それ以外はFormを表示,初期値はlistなのでList */}
 			{tab === "list" ? <List langs={langs} /> : <Form onAddLang={addLang} />}
-			<Modal />
 		</div>
 	);
 }
