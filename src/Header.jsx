@@ -42,8 +42,8 @@ export class Header extends React.Component {
 					<HeaderLi focused={tab === "form"} onClick={() => setTab("form")}>
 						Form
 					</HeaderLi>
+					<HeaderButton onClick={toggleTheme}>テーマの変更</HeaderButton>
 				</HeaderUl>
-				<HeaderButton onClick={toggleTheme}>テーマの変更</HeaderButton>
 			</Container>
 		);
 	}
