@@ -1,10 +1,8 @@
 import React from "react";
 import { List } from "./List";
 import { Form } from "./Form";
-import { getLanguages } from "./const/languages";
 import styled from "styled-components";
-import { withLoading } from "./hoc/withLoading";
-import { Modal } from "./components/modal";
+
 import { Header } from "./Header";
 import { ThemeContext } from "./contexts/ThemeContext";
 
